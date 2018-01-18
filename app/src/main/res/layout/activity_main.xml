@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/logo"
+        android:id="@+id/imageView" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:inputType="text"
+        android:hint="Usuario"
+        android:id="@+id/Tv_usu" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Tv_usu"
+        android:layout_alignStart="@+id/Tv_usu"
+        android:layout_below="@+id/Tv_usu"
+        android:layout_marginTop="14dp"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:id="@+id/Tv_pass" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Tv_pass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="Entrar"
+        android:id="@+id/Btn_iniciar" />
+
+    <TextView
+        android:id="@+id/tv_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Btn_iniciar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:text="Registrar"
+        android:textSize="16sp" />
+
+</RelativeLayout>

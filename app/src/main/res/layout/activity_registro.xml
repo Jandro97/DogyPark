@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.clase.dogypark.Registro">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Registro de usuario"
+        android:textSize="20dp"
+        android:id="@+id/textView" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:hint="Nombre"
+        android:id="@+id/edit_usu" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_usu"
+        android:layout_alignStart="@+id/edit_usu"
+        android:layout_below="@+id/edit_usu"
+        android:layout_marginTop="25dp"
+        android:hint="Email"
+        android:id="@+id/edit_email" />
+
+    <EditText
+        android:id="@+id/edit_pass"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_email"
+        android:layout_alignStart="@+id/edit_email"
+        android:layout_below="@+id/edit_email"
+        android:layout_marginTop="23dp"
+        android:hint="Contraseña" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_pass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Registrar" />
+
+
+</RelativeLayout>

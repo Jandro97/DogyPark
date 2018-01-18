@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.clase.dogypark.Usuario">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:text="Bienvenido"
+        android:textSize="20dp"
+        android:id="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/tv_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_pass"
+        android:layout_alignEnd="@+id/tv_email"
+        android:layout_alignRight="@+id/tv_email"
+        android:layout_marginBottom="44dp"
+        android:text="Nombre: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textv_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_pass"
+        android:layout_alignEnd="@+id/tv_email"
+        android:layout_alignRight="@+id/tv_email"
+        android:layout_marginBottom="44dp"
+        android:text=""
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_email"
+        android:layout_alignEnd="@+id/tv_email"
+        android:layout_alignRight="@+id/tv_email"
+        android:layout_marginBottom="41dp"
+        android:text="Contraseña: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textv_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_pass"
+        android:layout_alignBottom="@+id/tv_pass"
+        android:layout_toEndOf="@+id/tv_pass"
+        android:layout_toRightOf="@+id/tv_pass"
+        android:text=""
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="168dp"
+        android:layout_toLeftOf="@+id/textView2"
+        android:layout_toStartOf="@+id/textView2"
+        android:text="Email: "
+        android:textSize="18sp"
+        android:id="@+id/tv_email" />
+
+    <TextView
+        android:id="@+id/textv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_email"
+        android:layout_alignBottom="@+id/tv_email"
+        android:layout_toEndOf="@+id/tv_email"
+        android:layout_toRightOf="@+id/tv_email"
+        android:text=""
+        android:textSize="18sp" />
+
+
+</RelativeLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.clase.dogypark.settings">
+
+    <TextView
+        android:id="@+id/txName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextName"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/editTextName"
+        android:layout_marginTop="131dp"
+        android:text="Nombre:"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="287dp"
+        android:layout_height="44dp"
+        android:layout_below="@+id/txName"
+        android:layout_centerHorizontal="true"
+        android:hint="Introduce tu nombre"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="156dp" />
+
+    <TextView
+        android:id="@+id/txNick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextName"
+        android:layout_alignStart="@+id/editTextName"
+        android:layout_below="@+id/editTextName"
+        android:layout_marginTop="19dp"
+        android:text="Nickname:"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <EditText
+        android:id="@+id/editTextNick"
+        android:layout_width="287dp"
+        android:layout_height="44dp"
+        android:layout_below="@+id/txNick"
+        android:layout_centerHorizontal="true"
+        android:hint="Introduce un nickname"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="156dp" />
+
+    <TextView
+        android:id="@+id/txBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextName"
+        android:layout_alignStart="@+id/editTextNick"
+        android:layout_below="@+id/editTextNick"
+        android:layout_marginTop="18dp"
+        android:text="Biografia:"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <EditText
+        android:id="@+id/editTextBio"
+        android:layout_width="287dp"
+        android:layout_height="44dp"
+        android:layout_alignLeft="@+id/txBio"
+        android:layout_alignStart="@+id/txBio"
+        android:layout_below="@+id/txBio"
+        android:hint="Cuentanos de ti"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="156dp" />
+
+    <TextView
+        android:id="@+id/txsexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextBio"
+        android:layout_alignStart="@+id/editTextBio"
+        android:layout_below="@+id/editTextBio"
+        android:layout_marginTop="16dp"
+        android:text="Sexo:"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txsexo"
+        android:layout_alignStart="@+id/txsexo"
+        android:layout_below="@+id/txsexo" />
+
+    <Button
+        android:id="@+id/guardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:text="save" />
+
+    <Button
+        android:id="@+id/salir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/guardar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:text="cerrar sesion" />
+
+    <ImageView
+        android:id="@+id/foto"
+        android:layout_width="250px"
+        android:layout_height="250px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+</RelativeLayout>

@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/dogyparktrans"
         android:id="@+id/imageView" />
 
     <EditText
@@ -22,23 +22,23 @@
         android:layout_marginTop="22dp"
         android:inputType="text"
         android:hint="Usuario"
-        android:id="@+id/Tv_usu" />
+        android:id="@+id/usuario" />
 
     <EditText
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/Tv_usu"
-        android:layout_alignStart="@+id/Tv_usu"
-        android:layout_below="@+id/Tv_usu"
+        android:layout_alignLeft="@+id/usuario"
+        android:layout_alignStart="@+id/usuario"
+        android:layout_below="@+id/usuario"
         android:layout_marginTop="14dp"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        android:id="@+id/Tv_pass" />
+        android:id="@+id/password" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Tv_pass"
+        android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
         android:text="Entrar"

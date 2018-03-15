@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.clase.dogypark">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,7 +22,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".Registro" />
-        <activity android:name=".Usuario"></activity>
+        <activity android:name=".Usuario" />
+    
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".SecondActivity" />
+
+        <uses-library android:name="com.google.android.maps" />
+
+        <activity
+            android:name=".despazados"
+            android:label="@string/title_activity_despazados"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".settings"></activity>
     </application>
 
 </manifest>

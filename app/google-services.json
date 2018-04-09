@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "36624124132",
+    "firebase_url": "https://dogypark-50243.firebaseio.com",
+    "project_id": "dogypark-50243",
+    "storage_bucket": "dogypark-50243.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36624124132:android:ad79df83a3ede7a8",
+        "android_client_info": {
+          "package_name": "com.example.clase.dogypark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36624124132-nkkius57eqpakeqb81ho1f7ppa1ck2vo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.clase.dogypark",
+            "certificate_hash": "819260a94d71bb7c403a9ad555bffb222f82271f"
+          }
+        },
+        {
+          "client_id": "36624124132-jnbgg80hhbqk66p8c6caa3nvpenfonpc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7r1hCukhDDm-I9T-HRc7Usq8hI5-1AZo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36624124132-jnbgg80hhbqk66p8c6caa3nvpenfonpc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

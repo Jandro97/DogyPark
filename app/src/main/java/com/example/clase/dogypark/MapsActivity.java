@@ -1,10 +1,12 @@
 package com.example.clase.dogypark;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -36,13 +38,23 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     MapView mapView;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     FusedLocationProviderClient mFusedLocationProviderClient;
-    private Location mLastKnownLocation;
+    public static Location mLastKnownLocation;
+    FloatingActionButton floatbutton;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.maplayout, container, false);
 
+        floatbutton=(FloatingActionButton) rootView.findViewById(R.id.floatingActionButton);
+        floatbutton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent CrearParque = new Intent(getContext(), CrearParque.class);
+                startActivity(CrearParque);
+            }
+        });
 
         mapView = (MapView) rootView.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
@@ -57,19 +69,8 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         }
         mapView.getMapAsync(this);
         return rootView;
-    }
-/*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-    }
 
-*/
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -79,20 +80,10 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         int n = 0;
         GoogleMapOptions options = new GoogleMapOptions().liteMode(true);
 
-        /*mMap.setMinZoomPreference(15.0f);
-        mMap.setMaxZoomPreference(18.0f);*/
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         checkLocationPermission();
 
-        //mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marcador"));
-        /*if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            mMap.setMyLocationEnabled(true);
-        } else {
-            Toast.makeText(getContext(),"No se detecta el GPS", Toast.LENGTH_SHORT).show();
-        }*/
-       /* mMap.moveCamera(CameraUpdateFactory.newLatLng());*/
     }
 
     public boolean checkLocationPermission() {
@@ -101,20 +92,17 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
                 Log.d("MAP", "Explicando Permisos");
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
+
                 new AlertDialog.Builder(getContext())
                         .setTitle(R.string.title_location_permission)
                         .setMessage("Esta aplicacion necesita los permisos de localizacion")
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                //Prompt the user once explanation has been shown
+
                                 ActivityCompat.requestPermissions(getActivity(),
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                         MY_PERMISSIONS_REQUEST_LOCATION);
@@ -125,7 +113,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
 
             } else {
-                // No explanation needed, we can request the permission.
+
                 Log.d("MAP", "Pidiendo Permisos");
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -147,12 +135,10 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         Log.d("MAP", "Entrando en onRequestPermission");
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
+
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do.
                     if (ContextCompat.checkSelfPermission(getContext(),
                             Manifest.permission.ACCESS_FINE_LOCATION)
                             == PackageManager.PERMISSION_GRANTED) {
@@ -182,11 +168,12 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                     @Override
                     public void onComplete(@NonNull Task task) {
                         if (task.isSuccessful()) {
-                            // Set the map's camera position to the current location of the device.
+
                             mLastKnownLocation = (Location) task.getResult();
+                            //TODO supervisar comportamiento movecamera...a veces da error
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(mLastKnownLocation.getLatitude(),
-                                            mLastKnownLocation.getLongitude()), 18));
+                                            mLastKnownLocation.getLongitude()), 15));
                             Log.d("deviceloc", "cargando posicion:"+mLastKnownLocation.getLatitude()+", "+mLastKnownLocation.getLongitude());
                         } else {
                             Log.d("deviceloc", "Current location is null. Using defaults.");
@@ -201,5 +188,8 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         }catch(SecurityException e)  {
             Log.e("Exception: %s", e.getMessage());
         }
+    }
+    public Location getmLastKnownLocation(){
+        return mLastKnownLocation;
     }
 }

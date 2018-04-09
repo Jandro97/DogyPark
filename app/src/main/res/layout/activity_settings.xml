@@ -1,130 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#388E3C"
     tools:context="com.example.clase.dogypark.settings">
-
-    <TextView
-        android:id="@+id/txName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editTextName"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/editTextName"
-        android:layout_marginTop="131dp"
-        android:text="Nombre:"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="136dp" />
-
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="287dp"
-        android:layout_height="44dp"
-        android:layout_below="@+id/txName"
-        android:layout_centerHorizontal="true"
-        android:hint="Introduce tu nombre"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="156dp" />
-
-    <TextView
-        android:id="@+id/txNick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editTextName"
-        android:layout_alignStart="@+id/editTextName"
-        android:layout_below="@+id/editTextName"
-        android:layout_marginTop="19dp"
-        android:text="Nickname:"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="136dp" />
-
-    <EditText
-        android:id="@+id/editTextNick"
-        android:layout_width="287dp"
-        android:layout_height="44dp"
-        android:layout_below="@+id/txNick"
-        android:layout_centerHorizontal="true"
-        android:hint="Introduce un nickname"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="156dp" />
-
-    <TextView
-        android:id="@+id/txBio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editTextName"
-        android:layout_alignStart="@+id/editTextNick"
-        android:layout_below="@+id/editTextNick"
-        android:layout_marginTop="18dp"
-        android:text="Biografia:"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="136dp" />
-
-    <EditText
-        android:id="@+id/editTextBio"
-        android:layout_width="287dp"
-        android:layout_height="44dp"
-        android:layout_alignLeft="@+id/txBio"
-        android:layout_alignStart="@+id/txBio"
-        android:layout_below="@+id/txBio"
-        android:hint="Cuentanos de ti"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="156dp" />
-
-    <TextView
-        android:id="@+id/txsexo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editTextBio"
-        android:layout_alignStart="@+id/editTextBio"
-        android:layout_below="@+id/editTextBio"
-        android:layout_marginTop="16dp"
-        android:text="Sexo:"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="136dp" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="500px"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txsexo"
-        android:layout_alignStart="@+id/txsexo"
-        android:layout_below="@+id/txsexo" />
-
-    <Button
-        android:id="@+id/guardar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:text="save" />
-
-    <Button
-        android:id="@+id/salir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/guardar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
-        android:text="cerrar sesion" />
 
     <ImageView
         android:id="@+id/foto"
-        android:layout_width="250px"
-        android:layout_height="250px"
+        android:layout_width="95dp"
+        android:layout_height="93dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/perro2" />
 
-</RelativeLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="353dp"
+        android:layout_height="423dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagepark"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/txName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextName"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/editTextName"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Nombre:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.088"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.09"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="287dp"
+            android:layout_height="44dp"
+            android:layout_below="@+id/txName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="324dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:hint="Introduce tu nombre"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txName"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txNick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextName"
+            android:layout_alignStart="@+id/editTextName"
+            android:layout_below="@+id/editTextName"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Nickname:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.092"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextName"
+            app:layout_constraintVertical_bias="0.003"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/editTextNick"
+            android:layout_width="287dp"
+            android:layout_height="44dp"
+            android:layout_below="@+id/txNick"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="204dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:hint="Introduce un nickname"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txNick"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txBio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextName"
+            android:layout_alignStart="@+id/editTextNick"
+            android:layout_below="@+id/editTextNick"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="Biografia:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNick"
+            app:layout_constraintVertical_bias="0.07"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/editTextBio"
+            android:layout_width="287dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txBio"
+            android:layout_alignStart="@+id/txBio"
+            android:layout_below="@+id/txBio"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:hint="Cuentanos de ti"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:maxLength="150"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txBio"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txsexo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextBio"
+            android:layout_alignStart="@+id/editTextBio"
+            android:layout_below="@+id/editTextBio"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="Sexo:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.082"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextBio"
+            app:layout_constraintVertical_bias="0.145"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="500px"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txsexo"
+            android:layout_alignStart="@+id/txsexo"
+            android:layout_below="@+id/txsexo"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.341"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextBio"
+            app:layout_constraintVertical_bias="0.099" />
+
+        <Button
+            android:id="@+id/guardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/guardar"
+            android:text="Guardar"
+            android:theme="@style/RaisedButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/salir"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner"
+            app:layout_constraintVertical_bias="0.493"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="48dp" />
+
+        <Button
+            android:id="@+id/salir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/guardar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/cerrarsesion"
+            android:text="Cerrar Sesion"
+            android:theme="@style/RaisedButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner"
+            android:layout_marginRight="32dp" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

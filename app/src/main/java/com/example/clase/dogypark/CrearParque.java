@@ -2,21 +2,18 @@ package com.example.clase.dogypark;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -24,7 +21,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -34,45 +30,44 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
-public class settings extends AppCompatActivity implements View.OnClickListener{
+import static com.example.clase.dogypark.settings.URLPREF;
+
+public class CrearParque extends AppCompatActivity {
 
     private static final int CHOOSE_IMAGE = 101 ;
+    private Button btn_cancelar, btn_guardar;
+    private EditText editTextName, editTextCar;
+    Uri uriParkImage;
     private DatabaseReference databaseReference;
-    private EditText editTextName, editTextNick,editTextBio;
-    private Button btnGuardar;
-    private ImageView imageView;
-    Uri uriProfileImage;
-    private Button btnsalir;
     private FirebaseAuth firebaseAuth;
-    Spinner spinner;
     private StorageReference storageReference;
-
-
     private SharedPreferences mPreferences;
     private String sharedPrefFile = "com.example.clase.dogypark";
-    public static final String URLPREF= "url_imagen_perfil";
+    public static final String URLPREF= "url_imagen_parque";
+    private ImageView imageView;
+
+    MapsActivity latlong = new MapsActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_crear_parque);
 
         firebaseAuth= FirebaseAuth.getInstance();
-
-        spinner = (Spinner) findViewById(R.id.spinner);
-        String[] sexo = {"Hombre","Mujer","Otros"};
-        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sexo));
-
         databaseReference= FirebaseDatabase.getInstance().getReference();
 
-        imageView=(ImageView) findViewById(R.id.foto);
-        editTextName= (EditText) findViewById(R.id.editTextName);
-        editTextNick= (EditText) findViewById(R.id.editTextNick);
-        editTextBio= (EditText) findViewById(R.id.editTextBio);
 
-        btnGuardar= (Button) findViewById(R.id.guardar);
-        btnsalir= (Button) findViewById(R.id.salir);
+        btn_cancelar= findViewById(R.id.btn_atras);
+        btn_cancelar.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                Intent Volver = new Intent(getApplicationContext() , SecondActivity.class);
+                startActivity(Volver);
+            }
+        });
+
+        imageView= findViewById(R.id.imagepark);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,36 +76,63 @@ public class settings extends AppCompatActivity implements View.OnClickListener{
         });
 
         storageReference= FirebaseStorage.getInstance().getReference();
-
         mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
-        btnGuardar.setOnClickListener(this);
-        btnsalir.setOnClickListener(this);
+        editTextName=  findViewById(R.id.editText);
+        editTextCar=  findViewById(R.id.editText2);
+
+        btn_guardar=  findViewById(R.id.btn_guardarparque);
+        btn_guardar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                saveParkInformation();
+                Intent Volver = new Intent(getApplicationContext() , SecondActivity.class);
+                startActivity(Volver);
+            }
+        });
     }
 
     private void showImageChooser(){
         Intent intent= new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Selecciona imagen de perfil"),CHOOSE_IMAGE);
+        startActivityForResult(Intent.createChooser(intent, "Selecciona imagen del parque"),CHOOSE_IMAGE);
     }
 
+
+    private void saveParkInformation(){
+
+        String nombreparque= editTextName.getText().toString().trim();
+        String descripcion= editTextCar.getText().toString().trim();
+        String ubicacion= latlong.getmLastKnownLocation().toString().trim();
+        Log.d("latlong", "probando longitud y latitud: "+latlong.getmLastKnownLocation());
+
+        uploadFile();
+
+        ParkInformation parkInformation= new ParkInformation(nombreparque,descripcion,ubicacion);
+
+        //FirebaseUser user= firebaseAuth.getCurrentUser();
+        databaseReference.child(/*user.getUid()+*/nombreparque).setValue(parkInformation);
+        Toast.makeText(this,"Parque Guardado", Toast.LENGTH_SHORT).show();
+
+    }
     private void uploadFile(){
 
-        if (uriProfileImage!=null) {
+        if (uriParkImage!=null) {
 
             final ProgressDialog progressDialog=new ProgressDialog(this);
             progressDialog.setMessage("Subiendo...");
             progressDialog.show();
 
-            /*StorageReference islandRef = storageReference.child("images/island.jpg");
-            islandRef.getDownloadUrl();*/
 
             FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-            String uid= user.getUid();
-            StorageReference ref = storageReference.child("perfiles/"+uid+".jpg");
 
-            ref.putFile(uriProfileImage)
+
+            String uid= "imagen_"+ editTextName.getText().toString().trim();
+            StorageReference ref = storageReference.child("parques/"+uid+".jpg");
+
+            ref.putFile(uriParkImage)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -123,11 +145,6 @@ public class settings extends AppCompatActivity implements View.OnClickListener{
                             preferencesEditor.putString(URLPREF, descarga.toString());
                             preferencesEditor.apply();
 
-                            Glide.with(settings.this)
-                                    .load(descarga)
-                                    .fitCenter()
-                                    .centerCrop()
-                                    .into(imageView);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -146,56 +163,23 @@ public class settings extends AppCompatActivity implements View.OnClickListener{
                         }
                     });
         }else{
-            Toast.makeText(settings.this,"No hay foto seleccionada", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CrearParque.this,"No hay foto seleccionada", Toast.LENGTH_SHORT).show();
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode==CHOOSE_IMAGE && resultCode==RESULT_OK && data!= null && data.getData()!=null){
 
-            uriProfileImage=data.getData();
+            uriParkImage=data.getData();
 
             try {
-                Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(), uriProfileImage);
+                Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(), uriParkImage);
                 imageView.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    private void saveUserInformation(){
-
-        String nombre= editTextName.getText().toString().trim();
-        String nickname= editTextNick.getText().toString().trim();
-        String biografia= editTextBio.getText().toString().trim();
-        String sexo=spinner.getSelectedItem().toString().trim();
-
-        uploadFile();
-
-        UserInformation userInformation= new UserInformation(nombre,nickname,biografia,sexo);
-
-        FirebaseUser user= firebaseAuth.getCurrentUser();
-        databaseReference.child(user.getUid()).setValue(userInformation);
-        Toast.makeText(this,"Guardado", Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onClick(View view) {
-
-        if (view==btnGuardar){
-            saveUserInformation();
-        }
-
-        if (view==btnsalir){
-            firebaseAuth.signOut();
-            finish();
-            startActivity(new Intent(this,MainActivity.class));
-        }
-
     }
 }

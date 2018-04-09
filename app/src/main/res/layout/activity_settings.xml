@@ -8,6 +8,7 @@
     tools:context="com.example.clase.dogypark.settings">
 
     <ImageView
+
         android:id="@+id/foto"
         android:layout_width="95dp"
         android:layout_height="93dp"

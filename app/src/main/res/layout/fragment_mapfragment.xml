@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:id="@+id/map"
-    tools:context="com.example.clase.dogypark.mapfragment">
+    tools:context="com.alejandro.clase.dogypark.mapfragment">
 
 
     <LinearLayout

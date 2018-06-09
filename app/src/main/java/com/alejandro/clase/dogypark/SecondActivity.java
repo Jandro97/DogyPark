@@ -6,9 +6,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 /**
  * Created by clase on 08/02/2018.
@@ -44,9 +46,27 @@ public class SecondActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.pager);
 
         //Creating our pager adapter
-        Pager adapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
+        Pager adapter = new Pager(getSupportFragmentManager());
 
-        //Adding adapter to pager
+        MapsActivity frag_maps = new MapsActivity();
+        Usuario frag_usuario = new Usuario();
+
+        Intent intent = getIntent();
+        if(intent!=null){
+            if(intent.getBooleanExtra("doShowMap",false)){
+                Log.d("changetab", "setargument");
+                Parquesfavoritos parque= new Parquesfavoritos();
+                parque=parque.toObject(intent.getStringExtra("parque"));
+                if (parque!= null){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("parque", parque.toString());
+                    frag_maps.setArguments(bundle);
+
+                }
+            }
+        }
+        adapter.addFrag(frag_usuario);
+        adapter.addFrag(frag_maps);
         viewPager.setAdapter(adapter);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -69,6 +89,12 @@ public class SecondActivity extends AppCompatActivity {
 
             }
         });
+        if(intent!=null){
+            if(intent.getBooleanExtra("doShowMap",false)){
+                tabLayout.getTabAt(1).select();
+                Log.d("changetab", "cambiando tab a maps");
+            }
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,4 +116,5 @@ public class SecondActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

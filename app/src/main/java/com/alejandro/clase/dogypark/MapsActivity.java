@@ -50,12 +50,18 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     FusedLocationProviderClient mFusedLocationProviderClient;
     public static Location mLastKnownLocation;
     FloatingActionButton floatbutton;
+    Parquesfavoritos parque;
     HashMap<String,ParkInformation> parkList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.maplayout, container, false);
+
+        Bundle bundle= this.getArguments();
+        parque= new Parquesfavoritos();
+        if (bundle!=null)
+            parque=parque.toObject(bundle.getString("parque"));
 
         floatbutton=(FloatingActionButton) rootView.findViewById(R.id.floatingActionButton);
         floatbutton.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +104,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
         checkLocationPermission();
         loadParkInformation();
+
 
     }
 
@@ -190,6 +197,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                         new LatLng(mLastKnownLocation.getLatitude(),
                                                 mLastKnownLocation.getLongitude()), 15));
+                                Log.d("deviceloc", "cargando posicion:"+mLastKnownLocation.getLatitude()+", "+mLastKnownLocation.getLongitude());
                             }
                             else {
                                 Snackbar.make(getView(), "Error al detectar ubicacion", Snackbar.LENGTH_LONG)
@@ -202,7 +210,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                                         })
                                         .show();
                             }
-                            Log.d("deviceloc", "cargando posicion:"+mLastKnownLocation.getLatitude()+", "+mLastKnownLocation.getLongitude());
+
                         } else {
                             Log.d("deviceloc", "Current location is null. Using defaults.");
                             Log.e("deviceloc", "Exception: %s", task.getException());
@@ -216,6 +224,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         }catch(SecurityException e)  {
             Log.e("Exception: %s", e.getMessage());
         }
+        goPosition();
     }
     private void loadParkInformation(){
 
@@ -315,5 +324,12 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
     public Location getmLastKnownLocation(){
         return mLastKnownLocation;
+    }
+
+    public void goPosition(){
+        if (parque.getLoc()!= null){
+            LatLng latLng= new LatLng(parque.getLoc().getLatitud(), parque.getLoc().getLongitud());
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+        }
     }
 }

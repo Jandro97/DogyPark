@@ -1,5 +1,6 @@
 package com.alejandro.clase.dogypark;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,6 +35,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+//import com.soundcloud.android.crop.Crop;
+//import com.theartofdev.edmodo.cropper.CropImage;
+//import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
 
@@ -50,6 +54,7 @@ public class settings extends AppCompatActivity implements View.OnClickListener{
     private FirebaseAuth firebaseAuth;
     Spinner spinner;
     private StorageReference storageReference;
+    private LoadUser loadUser;
 
 
     private SharedPreferences mPreferences;
@@ -106,6 +111,8 @@ public class settings extends AppCompatActivity implements View.OnClickListener{
                                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                                 }
+                               /* CropImage.activity()
+                                        .start(settings.this);*/
                                 break;
                             case 1:
                                 Intent intent= new Intent();
@@ -113,7 +120,8 @@ public class settings extends AppCompatActivity implements View.OnClickListener{
                                 intent.setAction(Intent.ACTION_GET_CONTENT);
                                 startActivityForResult(Intent.createChooser(intent, "Selecciona imagen del parque"),CHOOSE_IMAGE);
                                 break;
-                        };
+                        }
+
                     }
                 });
         AlertDialog dialog = builder.create();
@@ -181,8 +189,9 @@ public class settings extends AppCompatActivity implements View.OnClickListener{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode==CHOOSE_IMAGE && resultCode==RESULT_OK && data!= null && data.getData()!=null){
+        if (requestCode== CHOOSE_IMAGE && resultCode==RESULT_OK && data!= null && data.getData()!=null){
 
+            //CropImage.ActivityResult result = CropImage.getActivityResult(data);
             uriProfileImage=data.getData();
 
             try {
@@ -208,10 +217,13 @@ public class settings extends AppCompatActivity implements View.OnClickListener{
 
         uploadFile();
 
-        UserInformation userInformation= new UserInformation(nombre,nickname,biografia,sexo);
+        loadUser.setNombre(nombre);
+        loadUser.setNickname(nickname);
+        loadUser.setBiografia(biografia);
+        loadUser.setSexo(sexo);
 
         FirebaseUser user= firebaseAuth.getCurrentUser();
-        databaseReference.child("Usuarios").child(user.getUid()).setValue(userInformation);
+        databaseReference.child("Usuarios").child(user.getUid()).setValue(loadUser);
         Toast.makeText(this,"Guardado", Toast.LENGTH_SHORT).show();
 
     }
@@ -247,11 +259,12 @@ public class settings extends AppCompatActivity implements View.OnClickListener{
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                LoadUser loadUser = dataSnapshot.getValue(LoadUser.class);
+                 loadUser = dataSnapshot.getValue(LoadUser.class);
 
                 editTextName.setText(loadUser.getNombre());
                 editTextNick.setText(loadUser.getNickname());
                 editTextBio.setText(loadUser.getBiografia());
+
 
             }
 

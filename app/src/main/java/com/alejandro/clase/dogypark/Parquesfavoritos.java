@@ -1,5 +1,7 @@
 package com.alejandro.clase.dogypark;
 
+import com.google.gson.Gson;
+
 /**
  * Created by clase on 10/05/2018.
  */
@@ -14,6 +16,7 @@ public class Parquesfavoritos {
     public Parquesfavoritos(String idparque, String nombreparque, Localizacion loc){
         this.idparque = idparque;
         this.nombreparque = nombreparque;
+        this.loc= loc;
     }
 
     public String getIdparque() {
@@ -38,5 +41,15 @@ public class Parquesfavoritos {
 
     public void setLoc(Localizacion loc) {
         this.loc = loc;
+    }
+
+    public String toString(){
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    public Parquesfavoritos toObject(String item){
+        Gson gson = new Gson();
+        return gson.fromJson(item, Parquesfavoritos.class);
     }
 }

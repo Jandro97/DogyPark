@@ -1,6 +1,7 @@
 package com.alejandro.clase.dogypark;
 
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -45,6 +46,7 @@ public class Usuario extends Fragment{
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private Context mContext;
 
     @Nullable
     @Override
@@ -57,6 +59,8 @@ public class Usuario extends Fragment{
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mContext=this.getContext();
 
         TextName= view.findViewById(R.id.Txtname);
         TextNick= view.findViewById(R.id.Txtnick);
@@ -119,7 +123,7 @@ public class Usuario extends Fragment{
                 TextNick.setText(loadUser.getNickname());
                 TextBio.setText(loadUser.getBiografia());
 
-                mAdapter= new MyAdapter(loadUser.getFavoritos());
+                mAdapter= new MyAdapter(loadUser.getFavoritos(), mContext);
                 mRecyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
 

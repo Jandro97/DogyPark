@@ -1,5 +1,7 @@
 package com.alejandro.clase.dogypark;
 
+import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,7 +13,6 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * Created by clase on 12/05/2018.
@@ -20,18 +21,34 @@ import static android.support.v4.content.ContextCompat.startActivity;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<Parquesfavoritos> mDataset;
+    private Context mContext;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
         public TextView mTextView;
+
         public ViewHolder(View v) {
             super(v);
             mTextView = v.findViewById(R.id.txtListItem);
+            v.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Log.d("changetab", "onclick");
+            Parquesfavoritos park= mDataset.get(getAdapterPosition());
+            Intent intent = new Intent(mContext, SecondActivity.class);
+            intent.putExtra("parque", park.toString());
+            intent.putExtra("doShowMap", true);
+            mContext.startActivity(intent);
+
         }
     }
 
-    public MyAdapter(List<Parquesfavoritos> myDataset) {
+    public MyAdapter(List<Parquesfavoritos> myDataset, Context context) {
+
         mDataset = myDataset;
+        mContext=context;
     }
 
     @Override
@@ -48,11 +65,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
+
         holder.mTextView.setText(mDataset.get(position).getnombreparque());
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(this ,SecondActivity.class));
 
             }
         });

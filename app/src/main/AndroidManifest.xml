@@ -36,6 +36,8 @@
         <activity
             android:name="com.alejandro.clase.dogypark.SecondActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+
 
         <uses-library android:name="com.google.android.maps" />
 
@@ -51,7 +53,10 @@
             android:name="com.alejandro.clase.dogypark.CrearParque"
             android:screenOrientation="portrait" />
         <activity android:name="com.alejandro.clase.dogypark.Registro2" />
-        <activity android:name="com.alejandro.clase.dogypark.infomarker"></activity>
+        <activity android:name="com.alejandro.clase.dogypark.infomarker">
+
+        </activity>
+
     </application>
 
 </manifest>
